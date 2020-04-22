@@ -17,7 +17,7 @@ class NaiveBayes:
         :return: returns a dictionary that has its key as each word in the vocabulary and value as a list containing
                  the index of the word in the vocabulary, the word itself, the frequency of the word in class ham,
                  the conditional probability of the word in class ham, the frequency of the word in class spam, and
-                 the conditional probability of the word in class spam,
+                 the conditional probability of the word in class spam.
         """
         n_samples, n_features = X.shape
         _classes = np.unique(y)
@@ -56,8 +56,6 @@ class NaiveBayes:
         :param vocab_size: size of vocabulary
         :return: no return type
         """
-
-        print('------------------------------------Training Started------------------------------------')
         n_samples, n_features = X.shape
         self._classes = np.unique(y)
         self.word_conditional_prob = {}
