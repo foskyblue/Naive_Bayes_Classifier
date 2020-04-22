@@ -25,3 +25,17 @@ class PreProcess:
         """
         cleaned_cor = [self.clean_sentence(sentence) for sentence in corpus]
         return cleaned_cor
+
+    def join(self, t1, t2):
+        """
+        :param t1: document 1
+        :param t2: document 2
+        :return: returns a combined document of t1 and t2
+        """
+        train_data = []
+        for sent in t1:
+            train_data.append(sent)
+
+        for sent in t2:
+            train_data.append(sent)
+        return train_data
