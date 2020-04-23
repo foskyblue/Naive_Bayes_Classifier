@@ -12,9 +12,9 @@ class PreProcess:
         :param string:
         :return:
         """
-        cleaned_str = re.sub('[^a-z\s]+', '', string, flags=re.IGNORECASE)
-        cleaned_str = re.sub('(\s+)', ' ', cleaned_str)  # multiple spaces are replaced by single space
-        cleaned_str = cleaned_str.lower()  # converting the cleaned string to lower case
+        cleaned_str = string.lower()
+        cleaned_str = re.split('[^a-zA-Z]', cleaned_str)
+        cleaned_str = [string for string in cleaned_str if string != ""]
         return cleaned_str
 
     def pre_process(self, corpus):
