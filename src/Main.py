@@ -146,7 +146,7 @@ def save_to_file(model):
                  the conditional probability of the word in class spam,
     :return: no return type
     """
-    file = open('model.txt', 'w')
+    file = open('../output_files/model.txt', 'w')
 
     for key in model.keys():
         file.writelines(model[key])
@@ -162,7 +162,7 @@ def save_results(test_labels, pred, posteriors):
     :param posteriors: posteriors used for predictions
     :return: no return type
     """
-    file = open('result.txt', 'w')
+    file = open('../output_files/result.txt', 'w')
     # print('len(pred)', len(pred), 'len(test_labels)', len(test_labels))
     for i in range(len(pred)):
         class_type = ''
@@ -246,28 +246,28 @@ def main():
     print('Data pre-processing successful!!! \n')
     # # transform data to sparse matrix
     print('-------------------------------------------------- Computing sparse matrices for train/test data --------------------------------------------------')
-    print('-------------------------------------------------- PLEASE NOTE: This will take approximately 10-15 minutes due to the huge size of the vocabulary --------------------------------------------------')
+    print('------------------------------------- PLEASE NOTE: This will take approximately 2-3 minutes (Room for improvement!) -------------------------------')
     vectorizer = CountVectorizer()
-    train_d = vectorizer.fit(train_data)
+    vectorizer.fit(train_data)
     train_data = vectorizer.fit_transform(train_data)
     test_data = vectorizer.fit_transform(test_data)
     print('Sparse matrices has been computed successfully!!! \n')
     # # training and prediction
     nb = NaiveBayes()
     model = nb.model(train_data, train_labels, 0.5, vectorizer.get_vocabulary_count(), vectorizer.get_feature_params())
-    print('************************************************** Saving Model **************************************************')
+    print('***************************************************************** Saving Model *****************************************************************')
     save_to_file(model)
-    print('model.txt file has been saved successfully to the relative path (src folder)')
+    print('model.txt file has been saved successfully!!! Check generated output in the output_files folder. \n')
     nb.fit(train_data, train_labels, 0.5, vectorizer.get_vocabulary_count())
     pred, posteriors = nb.predict(test_data)
-    print('************************************************** Saving Result **************************************************')
+    print('***************************************************************** Saving Result *****************************************************************')
     save_results(test_labels, pred, posteriors)
-    print('result.txt file has been saved successfully to the relative path (src folder) \n')
+    print('result.txt file has been saved successfully!!! Check generated output in the output_files folder. \n')
 
-    print('-------------------------------------------------- Prediction Started --------------------------------------------------')
+    print('----------------------------------------------------------------- Prediction Started ------------------------------------------------------------')
     spam_test_labels, spam_pred, ham_test_labels, ham_pred = get_class_data(test_labels, pred)
     print('Prediction is successful!!! \n')
-    print('-------------------------------------------------- Performance for class spam --------------------------------------------------')
+    print('------------------------------------------------------------- Performance for class spam --------------------------------------------------------')
 
     # performance for class spam
     print('accuracy for class spam : ', accuracy(spam_test_labels, spam_pred, class_type='spam'))
