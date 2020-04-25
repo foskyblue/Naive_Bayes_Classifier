@@ -16,6 +16,24 @@ def accuracy(y_true, y_pred, class_type):
     return (true_positive + true_negative) / (true_positive + true_negative + false_negative + false_positive)
 
 
+def _params(y_true, y_pred):
+    true_positive = 0
+    false_positive = 0
+    true_negative = 0
+    false_negative = 0
+
+    for idx in range(len(y_true)):
+        if y_true[idx] == 1 and y_pred[idx] == 1:
+            true_positive += 1
+        elif y_true[idx] == 1 and y_pred[idx] == 0:
+            false_negative += 1
+        elif y_true[idx] == 0 and y_pred[idx] == 1:
+            false_positive += 1
+        elif y_true[idx] == 0 and y_pred[idx] == 0:
+            true_negative += 1
+    return true_positive, false_positive, true_negative, false_negative
+
+
 def parameters(y_true, y_pred, class_type):
     """
     :param y_true: expected class label
@@ -51,7 +69,7 @@ def parameters(y_true, y_pred, class_type):
     return true_positive, false_positive, true_negative, false_negative
 
 
-def confusion_matrix(y_true, y_pred, class_type):
+def confusion_matrix_per_class(y_true, y_pred, class_type):
     """
     computes a 2 by 2 matrix with actual and predicted class labels
     :param y_true: expected class label
@@ -61,6 +79,23 @@ def confusion_matrix(y_true, y_pred, class_type):
     """
     matrix = np.zeros((2, 2))
     true_positive, false_positive, true_negative, false_negative = parameters(y_true, y_pred, class_type)
+    matrix[0, 0] = true_positive
+    matrix[0, 1] = false_positive
+    matrix[1, 0] = false_negative
+    matrix[1, 1] = true_negative
+    return matrix
+
+
+def confusion_matrix(y_true, y_pred):
+    """
+    computes a 2 by 2 matrix with actual and predicted class labels
+    :param y_true: expected class label
+    :param y_pred: predicted class label
+    :param class_type: if class is spam: positive=0, negative=1, if class is ham: positive=1, negative=0
+    :return: returns 2 by 2 confusion matrix
+    """
+    matrix = np.zeros((2, 2))
+    true_positive, false_positive, true_negative, false_negative = _params(y_true, y_pred)
     matrix[0, 0] = true_positive
     matrix[0, 1] = false_positive
     matrix[1, 0] = false_negative
@@ -201,17 +236,6 @@ def get_class_data(test_labels, pred):
     spam_pred = []
     ham_pred = []
 
-    # for c in pred:
-    #     if c == 0:
-    #         spam_pred.append(c)
-    #     elif c == 1:
-    #         ham_pred.append(c)
-    # for idx, c in enumerate(pred):
-    #     if c == 0:
-    #         spam_test_labels.append(test_labels[idx])
-    #     elif c == 1:
-    #         ham_test_labels.append(test_labels[idx])
-
     for idx, c in enumerate(test_labels):
         if c == 0:
             spam_test_labels.append(c)
@@ -228,7 +252,7 @@ def main():
     :return: no return type
     """
     # read training data, labels
-    print('-------------------------------------------------- Reading train/test data from documents ------------------------------------------------------')
+    print('---------------------------------------------------- Reading train/test data from documents -------------------------------------------------------')
     train_spam = read_files("train", "spam", 997)
     train_ham = read_files("train", "ham", 1000)
     train_labels = labels(len(train_spam), len(train_ham))
@@ -239,7 +263,7 @@ def main():
     test_labels = labels(len(test_spam), len(test_ham))
     print('Data read successfully!!! \n')
     # # Pre-process strings
-    print('--------------------------------------------------- Pre-processing the train/test data ----------------------------------------------------------')
+    print('---------------------------------------------------- Pre-processing the train/test data -----------------------------------------------------------')
     p = PreProcess()
     train_spam = p.pre_process(train_spam)
     train_ham = p.pre_process(train_ham)
@@ -286,7 +310,7 @@ def main():
     print('precision for class spam : ', precision(spam_test_labels, spam_pred, class_type='spam'))
     print('recall for class spam : ', recall(spam_test_labels, spam_pred, class_type='spam'))
     print('f-measure for class spam : ', f_measure(spam_test_labels, spam_pred, class_type='spam'))
-    print('confusion matrix for class spam : \n', confusion_matrix(spam_test_labels, spam_pred, class_type='spam'))
+    print('confusion matrix for class spam : \n', confusion_matrix_per_class(spam_test_labels, spam_pred, class_type='spam'), '\n')
     print('------------------------------------------------------------- Performance for class ham ---------------------------------------------------------')
 
     # performance for class ham
@@ -294,7 +318,10 @@ def main():
     print('precision for class ham : ', precision(ham_test_labels, ham_pred, class_type='ham'))
     print('recall for class ham : ', recall(ham_test_labels, ham_pred, class_type='ham'))
     print('f-measure for class ham : ', f_measure(ham_test_labels, ham_pred, class_type='ham'))
-    print('confusion matrix for class ham : \n', confusion_matrix(ham_test_labels, ham_pred, class_type='ham'))
+    print('confusion matrix for class ham : \n', confusion_matrix_per_class(ham_test_labels, ham_pred, class_type='ham'), '\n')
+
+    print('--------------------------------------------------------------- Joint confusion matrix ---------------------------------------------------------------')
+    print(confusion_matrix(test_labels, pred))
 
 
 if __name__ == "__main__":
