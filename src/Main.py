@@ -34,7 +34,7 @@ def parameters(y_true, y_pred, class_type):
                 true_positive += 1
             elif y_true[index] == 1 and y_pred[index] == 0:
                 false_positive += 1
-            elif y_true[index] == 0 and y_pred[index] == 0:
+            elif y_true[index] == 0 and y_pred[index] == 1:
                 false_negative += 1
             elif y_true[index] == 1 and y_pred[index] == 1:
                 true_negative += 1
@@ -201,16 +201,24 @@ def get_class_data(test_labels, pred):
     spam_pred = []
     ham_pred = []
 
-    for c in pred:
+    # for c in pred:
+    #     if c == 0:
+    #         spam_pred.append(c)
+    #     elif c == 1:
+    #         ham_pred.append(c)
+    # for idx, c in enumerate(pred):
+    #     if c == 0:
+    #         spam_test_labels.append(test_labels[idx])
+    #     elif c == 1:
+    #         ham_test_labels.append(test_labels[idx])
+
+    for idx, c in enumerate(test_labels):
         if c == 0:
-            spam_pred.append(c)
+            spam_test_labels.append(c)
+            spam_pred.append(pred[idx])
         elif c == 1:
-            ham_pred.append(c)
-    for idx, c in enumerate(pred):
-        if c == 0:
-            spam_test_labels.append(test_labels[idx])
-        elif c == 1:
-            ham_test_labels.append(test_labels[idx])
+            ham_test_labels.append(c)
+            ham_pred.append(pred[idx])
     return spam_test_labels, spam_pred, ham_test_labels, ham_pred
 
 
