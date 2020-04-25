@@ -8,6 +8,9 @@ The project consists of four (4) classes:
  regular expression and uses the set of resulting words as the vocabulary.</li>
  
  ### How to run:
+ This program was written using Python 3.7
+ <li>Dependencies: Numpy, re</li>
+ <br>
  After cloning/downloading, be sure that the training and test samples are available in ../datasets/train/ and 
  ../datasets/test folders respectively.
  
