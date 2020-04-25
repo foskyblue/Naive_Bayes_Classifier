@@ -56,7 +56,7 @@ def parameters(y_true, y_pred, class_type):
                 false_negative += 1
             elif y_true[index] == 1 and y_pred[index] == 1:
                 true_negative += 1
-    elif class_type == 'ham':
+    elif class_type == 'ham' or class_type == 'joint':
         for index in range(len(y_true)):
             if y_true[index] == 1 and y_pred[index] == 1:
                 true_positive += 1
@@ -320,8 +320,13 @@ def main():
     print('f-measure for class ham : ', f_measure(ham_test_labels, ham_pred, class_type='ham'))
     print('confusion matrix for class ham : \n', confusion_matrix_per_class(ham_test_labels, ham_pred, class_type='ham'), '\n')
 
-    print('--------------------------------------------------------------- Joint confusion matrix ---------------------------------------------------------------')
-    print(confusion_matrix(test_labels, pred))
+    print('--------------------------------------------------------------- Joint performance ----------------------------------------------------------------')
+
+    print('accuracy : ', accuracy(test_labels, pred, class_type='joint'))
+    print('precision : ', precision(test_labels, pred, class_type='joint'))
+    print('recall : ', recall(test_labels, pred, class_type='joint'))
+    print('f-measure : ', f_measure(test_labels, pred, class_type='joint'))
+    print('confusion matrix : \n', confusion_matrix_per_class(test_labels, pred, class_type='ham'), '\n')
 
 
 if __name__ == "__main__":
