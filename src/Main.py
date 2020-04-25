@@ -320,7 +320,7 @@ def main():
     print('f-measure for class ham : ', f_measure(ham_test_labels, ham_pred, class_type='ham'))
     print('confusion matrix for class ham : \n', confusion_matrix_per_class(ham_test_labels, ham_pred, class_type='ham'), '\n')
 
-    print('--------------------------------------------------------------- Joint performance ----------------------------------------------------------------')
+    print('--------------------------------------------------------------- Overall system performance ----------------------------------------------------------------')
 
     print('accuracy : ', accuracy(test_labels, pred, class_type='joint'))
     print('precision : ', precision(test_labels, pred, class_type='joint'))
