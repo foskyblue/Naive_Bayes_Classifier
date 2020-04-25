@@ -326,7 +326,7 @@ def main():
     print('precision : ', precision(test_labels, pred, class_type='joint'))
     print('recall : ', recall(test_labels, pred, class_type='joint'))
     print('f-measure : ', f_measure(test_labels, pred, class_type='joint'))
-    print('confusion matrix : \n', confusion_matrix_per_class(test_labels, pred, class_type='ham'), '\n')
+    print('confusion matrix : \n', confusion_matrix(test_labels, pred), '\n')
 
 
 if __name__ == "__main__":
