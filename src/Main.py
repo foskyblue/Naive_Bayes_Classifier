@@ -220,7 +220,7 @@ def main():
     :return: no return type
     """
     # read training data, labels
-    print('-------------------------------------------------- Reading train/test data from documents --------------------------------------------------')
+    print('-------------------------------------------------- Reading train/test data from documents ------------------------------------------------------')
     train_spam = read_files("train", "spam", 997)
     train_ham = read_files("train", "ham", 1000)
     train_labels = labels(len(train_spam), len(train_ham))
@@ -231,7 +231,7 @@ def main():
     test_labels = labels(len(test_spam), len(test_ham))
     print('Data read successfully!!! \n')
     # # Pre-process strings
-    print('-------------------------------------------------- Pre-processing the train/test data --------------------------------------------------')
+    print('--------------------------------------------------- Pre-processing the train/test data ----------------------------------------------------------')
     p = PreProcess()
     train_spam = p.pre_process(train_spam)
     train_ham = p.pre_process(train_ham)
@@ -258,8 +258,12 @@ def main():
     print('***************************************************************** Saving Model *****************************************************************')
     save_to_file(model)
     print('model.txt file has been saved successfully!!! Check generated output in the output_files folder. \n')
+    print('-------------------------------------------------------------- Training started -----------------------------------------------------------------')
     nb.fit(train_data, train_labels, 0.5, vectorizer.get_vocabulary_count())
+    print('Training completed successfully!!! \n')
+    print('------------------------------------------------------------------- Predicting -----------------------------------------------------------------')
     pred, posteriors = nb.predict(test_data)
+    print('Prediction completed successfully!!! \n')
     print('***************************************************************** Saving Result *****************************************************************')
     save_results(test_labels, pred, posteriors)
     print('result.txt file has been saved successfully!!! Check generated output in the output_files folder. \n')
@@ -275,7 +279,7 @@ def main():
     print('recall for class spam : ', recall(spam_test_labels, spam_pred, class_type='spam'))
     print('f-measure for class spam : ', f_measure(spam_test_labels, spam_pred, class_type='spam'))
     print('confusion matrix for class spam : \n', confusion_matrix(spam_test_labels, spam_pred, class_type='spam'))
-    print('-------------------------------------------------- Performance for class ham --------------------------------------------------')
+    print('------------------------------------------------------------- Performance for class ham ---------------------------------------------------------')
 
     # performance for class ham
     print('accuracy for class ham : ', accuracy(ham_test_labels, ham_pred, class_type='ham'))
