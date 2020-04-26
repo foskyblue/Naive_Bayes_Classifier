@@ -41,7 +41,7 @@ class NaiveBayes:
         util = {}
         for idx, word in enumerate(vocabulary):
             if len(word) > 0:
-                util[word] = str(idx) + "  " + str(word) + "  " + str(round(freq_ham[idx], 8)) + "  " + str(
+                util[word] = str(idx+1) + "  " + str(word) + "  " + str(round(freq_ham[idx], 8)) + "  " + str(
                     round(word_conditional_prob_ham[idx], 8)) + "  " + str(round(freq_spam[idx], 8)) + "  " + str(
                     round(word_conditional_prob_spam[idx], 8))+"\n"
 
