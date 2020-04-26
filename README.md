@@ -15,7 +15,26 @@ The project consists of four (4) classes:
  ../datasets/test folders respectively.
  
  Start execution from the Main class. After completion the following files are generated:
- <li>model.txt file is generated and saved in the output folder.</li>
- <li>result.txt file is also generated and saved in the output folder.</li>
+ <li>model.txt file with the information
+   <ol>
+    <li>A line counter i, followed by 2 spaces.</li>
+    <li>The word w<sub>i</sub>, followed by 2 spaces.</li>
+    <li>The frequency of w<sub>i</sub> in the class ham, followed by 2 spaces.</li>
+    <li>The smoothed conditional probability of w<sub>i</sub> in the class ham −P(w<sub>i</sub>|ham), followed by 2 spaces.</li>
+    <li>The frequency of w<sub>i</sub> in the class spam, followed by 2 spaces</li>
+    <li>The smoothed conditional probability of w<sub>i</sub> in the class spam −P(w<sub>i</sub>|spam), followed by a carriage return.</li>
+   </ol>
+  is generated and saved in the output_files folder located in the root folder.</li>
+ <li>result.txt file with the information 
+   <ol>
+    <li>A line counter i, followed by 2 spaces.</li>
+    <li>the name of the test file, followed by 2 spaces</li>
+    <li>the classification as given by your classifier (the label spam or ham), followed by 2 spaces</li>
+    <li>the score of the class ham as given by your classifier, followed by 2 spaces</li>
+    <li>the score of the class spam as given by your classifier, followed by 2 spaces</li>
+    <li>the correct classification of the file, followed by 2 spaces</li>
+    <li>the label right or wrong (depending on the case), followed by a carriage return</li>
+   </ol>
+ is saved in the output folder.</li>
  
  Accuracy, precision, recall and f1-measure is also computed for spam and ham classes.
