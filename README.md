@@ -35,6 +35,7 @@ The project consists of four (4) classes:
     <li>the correct classification of the file, followed by 2 spaces</li>
     <li>the label right or wrong (depending on the case), followed by a carriage return</li>
    </ol>
- is saved in the output folder.</li>
+ is generated and saved in the output_files folder located in the root folder.</li>
  
- Accuracy, precision, recall and f1-measure is also computed for spam and ham classes.
+ Accuracy, precision, recall and f1-measure are computed for spam and ham classes.
+ Accuracy, precision, recall and f1-measure are computed for the overall system.
