@@ -1,41 +1,33 @@
 # Naive_Bayes_Classifier
 
-The project consists of four (4) classes:
- <li>CountVectorizer : Responsible for computing the vector of frequency for each document</li>
- <li>Main : Contains the main method, where program execution begin.</li>
- <li>NaiveBayes : Responsible for training and prediction</li>
- <li>PreProcess : Responsible for processing the texts. Folds all characters to lowercase, then tokenize them using 
- regular expression and uses the set of resulting words as the vocabulary.</li>
- 
- ### How to run:
- This program was written using Python 3.7
- <li>Dependencies: Numpy, re</li>
- <br>
- After cloning/downloading, be sure that the training and test samples are available in ../datasets/train/ and 
- ../datasets/test folders respectively.
- 
- Start execution from the Main class. After completion the following files are generated:
- <li>model.txt file with the information
-   <ol>
-    <li>A line counter i, followed by 2 spaces.</li>
-    <li>The word w<sub>i</sub>, followed by 2 spaces.</li>
-    <li>The frequency of w<sub>i</sub> in the class ham, followed by 2 spaces.</li>
-    <li>The smoothed conditional probability of w<sub>i</sub> in the class ham −P(w<sub>i</sub>|ham), followed by 2 spaces.</li>
-    <li>The frequency of w<sub>i</sub> in the class spam, followed by 2 spaces</li>
-    <li>The smoothed conditional probability of w<sub>i</sub> in the class spam −P(w<sub>i</sub>|spam), followed by a carriage return.</li>
-   </ol>
-  is generated and saved in the output_files folder located in the root folder.</li>
- <li>result.txt file with the information 
-   <ol>
-    <li>A line counter i, followed by 2 spaces.</li>
-    <li>the name of the test file, followed by 2 spaces</li>
-    <li>the classification as given by your classifier (the label spam or ham), followed by 2 spaces</li>
-    <li>the score of the class ham as given by your classifier, followed by 2 spaces</li>
-    <li>the score of the class spam as given by your classifier, followed by 2 spaces</li>
-    <li>the correct classification of the file, followed by 2 spaces</li>
-    <li>the label right or wrong (depending on the case), followed by a carriage return</li>
-   </ol>
- is generated and saved in the output_files folder located in the root folder.</li>
- 
- Accuracy, precision, recall and f1-measure are computed for spam and ham classes.
- Accuracy, precision, recall and f1-measure are computed for the overall system.
+
+### Table of Contents
+
+1. [Installation](#installation)
+2. [Project Motivation](#motivation)
+3. [File Descriptions](#files)
+4. [Results](#results)
+5. [Licensing, Authors, and Acknowledgements](#licensing)
+
+## Installation <a name="installation"></a>
+
+To run this project, you can clone this repository onto your local machine and run the main.py file. The version of python used is python 3.7. 
+
+
+## Project Motivation<a name="motivation"></a>
+
+This is an AI school project where I and two group members [Che Shao Chen](https://github.com/Bill1119) and [Yuan Zhang](https://github.com/FloatMineArm) to implement a Naive Bayes algorithms form scratch.
+
+
+## File Descriptions <a name="files"></a>
+
+This project contains 4 Python files for the implementation.
+1. CountVectorizer : Responsible for computing the vector of frequency for each document.
+2. Main : Contains the main method, where program execution begin.
+3. NaiveBayes : Responsible for training and prediction.
+4. PreProcess : Responsible for processing the texts. Folds all characters to lowercase, then tokenize them using 
+ regular expression and uses the set of resulting words as the vocabulary.
+
+## Results<a name="results"></a>
+
+The main findings of the code can be found in the report folder.
